@@ -1,6 +1,6 @@
 # Test app using [Kaitai](http://kaitai.io/)
 
-This demo app will uses Kaitai lib to parse a binary file. The schema is defined in a Kairai specific format and is saved to as a text file with the *.ksy extension.
+This demo C++ app will uses Kaitai lib to parse a binary file. The schema is defined in a Kairai specific format and is saved to as a text file with the *.ksy extension.
 
 ## Setting up Kaitai
 * Install `kaitai-struct-compiler` package to generate binary reader source code.
@@ -23,11 +23,14 @@ This demo app will uses Kaitai lib to parse a binary file. The schema is defined
 ## Building
 * Generate the binary file parser source code
   
+        cd src
         kaitai-struct-compiler --target cpp_stl --cpp-namespace ballerina bir.ksy
 * Build test app
  
-        clang++ -g -lkaitai_struct_cpp_stl_runtime main.cpp bir.cpp 
+        cd build
+        cmake ../  -DCMAKE_BUILD_TYPE="Debug"
+        make -j
 * Run app
  
         export LD_LIBRARY_PATH=/usr/local/lib/
-        ./a.out
+        ./kaitai_test
